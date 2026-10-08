@@ -1,0 +1,160 @@
+.contact-section {
+  padding-top: 5rem;
+  padding-bottom: 3.5rem;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-default);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .contact-section {
+    padding-top: 6.5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 3.5rem;
+  }
+}
+
+.contact-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  padding: 2.25rem;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.contact-card__heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.contact-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-detail-item {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  padding: 1.25rem 1.5rem;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.contact-detail-title {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.contact-detail-link {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast);
+}
+
+.contact-detail-link:hover {
+  color: var(--accent);
+}
+
+.contact-detail-val {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.contact-detail-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* System Diagnostic Integration */
+.contact-system-status {
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-system-status__title {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.contact-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .contact-footer-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.contact-phase-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-soft);
+}

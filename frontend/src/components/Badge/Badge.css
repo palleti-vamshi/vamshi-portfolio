@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.625rem;
+  border-radius: 2px;
+  border: 1px solid var(--border-default);
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.badge--sm {
+  font-size: 0.6875rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.badge--accent {
+  border-color: rgba(124, 140, 255, 0.3);
+  color: var(--accent-soft);
+  background-color: rgba(124, 140, 255, 0.05);
+}
+
+.badge--success {
+  border-color: rgba(125, 211, 168, 0.3);
+  color: var(--success);
+  background-color: rgba(125, 211, 168, 0.05);
+}
+
+.badge--muted {
+  border-color: var(--border-subtle);
+  color: var(--text-muted);
+  background-color: transparent;
+}
