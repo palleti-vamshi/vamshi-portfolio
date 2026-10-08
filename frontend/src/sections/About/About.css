@@ -147,6 +147,13 @@
   }
 }
 
+.about-spec__def--cgpa {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-primary);
+  letter-spacing: 0.04em;
+}
+
 .about-spec__footer {
   padding: 0.75rem 1.25rem;
   background-color: var(--bg-elevated);

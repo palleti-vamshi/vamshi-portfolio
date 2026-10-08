@@ -9,5 +9,6 @@ export const profileData = {
   degree: 'B.Tech Artificial Intelligence & Machine Learning',
   year: '2nd Year',
   graduation: 2029,
+  cgpa: '9.9 / 10',
   location: 'Hyderabad, India'
 };

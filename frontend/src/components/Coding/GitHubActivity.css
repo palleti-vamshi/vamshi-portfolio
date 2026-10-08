@@ -1,0 +1,224 @@
+.gh-activity-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 3px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.gh-activity-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.gh-activity-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gh-activity-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.gh-activity-btn {
+  font-size: 0.75rem;
+}
+
+.gh-events-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Timeline Layout */
+.gh-events-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.gh-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.gh-timeline-item:last-child {
+  padding-bottom: 0.5rem;
+}
+
+.gh-timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 14px;
+  flex-shrink: 0;
+  padding-top: 0.35rem;
+}
+
+.gh-timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--success);
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.gh-timeline-line {
+  position: absolute;
+  top: 14px;
+  bottom: -4px;
+  width: 1px;
+  background-color: var(--border-subtle);
+  z-index: 1;
+}
+
+.gh-timeline-content {
+  flex: 1;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.gh-timeline-content:hover {
+  border-color: var(--border-hover);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.gh-timeline-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.gh-timeline-repo {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.gh-timeline-repo:hover {
+  color: var(--accent-primary);
+}
+
+.gh-timeline-arrow {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.gh-timeline-repo:hover .gh-timeline-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.gh-timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.gh-timeline-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.gh-timeline-type {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  letter-spacing: 0.02em;
+}
+
+.gh-timeline-dot-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.gh-timeline-time {
+  color: var(--text-secondary);
+}
+
+.gh-timeline-commits {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+}
+
+/* Footer & Fallback */
+.gh-activity-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.gh-activity-note {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.gh-activity-footer-btn {
+  font-size: 0.75rem;
+}
+
+.gh-activity-fallback {
+  background-color: rgba(10, 10, 11, 0.4);
+  border: 1px dashed var(--border-default);
+  padding: 2rem 1.5rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.gh-fallback-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}

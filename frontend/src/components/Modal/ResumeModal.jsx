@@ -61,7 +61,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               <div className="resume-edu-degree">{profile.degree}</div>
               <div className="resume-edu-inst">{profile.college}, {profile.location}</div>
               <div className="resume-edu-standing">
-                Academic Standing: <span>{profile.year}</span> (Graduation: {profile.graduation})
+                Academic Standing: <span>{profile.year}</span> (Graduation: {profile.graduation}) • CGPA: <span>{profile.cgpa}</span>
               </div>
             </div>
           </div>

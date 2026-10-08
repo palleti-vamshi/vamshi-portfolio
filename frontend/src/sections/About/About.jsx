@@ -38,15 +38,22 @@ export default function About() {
           {/* Academic & Profile Metadata Spec Sheet */}
           <div className="about-spec">
             <div className="about-spec__header">
-              <span className="about-spec__title">ACADEMIC PROFILE SPECIFICATION</span>
+              <span className="about-spec__title">ACADEMIC SNAPSHOT</span>
               <span className="about-spec__badge">VERIFIED</span>
             </div>
 
             <dl className="about-spec__list">
               {about.details.map((item) => (
-                <div key={item.label} className="about-spec__row">
+                <div
+                  key={item.label}
+                  className={`about-spec__row ${item.label === 'CGPA' ? 'about-spec__row--cgpa' : ''}`}
+                >
                   <dt className="about-spec__term">{item.label}</dt>
-                  <dd className="about-spec__def">{item.value}</dd>
+                  <dd
+                    className={`about-spec__def ${item.label === 'CGPA' ? 'about-spec__def--cgpa' : ''}`}
+                  >
+                    {item.value}
+                  </dd>
                 </div>
               ))}
             </dl>

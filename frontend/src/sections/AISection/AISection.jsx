@@ -25,7 +25,7 @@ export default function AISection() {
     <section id="ai" className="section-wrapper ai-section">
       <div className="container">
         <SectionHeader
-          number="07"
+          number="08"
           kicker="INTELLIGENT SYSTEMS"
           title="AI PHILOSOPHY & ROADMAP"
           description="Investigating machine learning from the twin perspectives of model interpretability and lightweight embedded execution."

@@ -10,6 +10,7 @@ export const profile = {
   degree: 'B.Tech Artificial Intelligence & Machine Learning',
   year: '2nd Year',
   graduation: 2029,
+  cgpa: '9.9 / 10',
   location: 'Hyderabad, India',
 
   hero: {
@@ -34,9 +35,11 @@ export const profile = {
     ],
     details: [
       { label: 'Name', value: 'Palleti Vamshi' },
-      { label: 'Degree', value: 'B.Tech Artificial Intelligence & Machine Learning' },
       { label: 'Institution', value: 'VNR VJIET, Hyderabad' },
-      { label: 'Current Standing', value: '2nd Year (Expected Graduation: 2029)' },
+      { label: 'Degree', value: 'B.Tech Artificial Intelligence & Machine Learning' },
+      { label: 'Expected Graduation', value: '2029' },
+      { label: 'CGPA', value: '9.9 / 10' },
+      { label: 'Current Standing', value: '2nd Year' },
       { label: 'Location', value: 'Hyderabad, India' },
       { label: 'Core Focus', value: 'AI/ML, DSA, Competitive Programming, Full-Stack Systems' }
     ]

@@ -9,7 +9,7 @@ export default function Contact({ onOpenResume }) {
     <footer id="contact" className="contact-section">
       <div className="container">
         <SectionHeader
-          number="08"
+          number="09"
           kicker="COMMUNICATION"
           title="GET IN TOUCH"
           description="Open for academic collaboration, research discussions, open-source work, and competitive programming exchanges."
