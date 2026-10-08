@@ -1,0 +1,14 @@
+{
+  "name": "vamshi-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Technical recruitment portfolio for Palleti Vamshi",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "start:backend": "npm --prefix backend start",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "preview:frontend": "npm --prefix frontend run preview"
+  }
+}
