@@ -28,7 +28,7 @@
 .coding-card__platform {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent);
+  color: var(--accent-primary);
   letter-spacing: 0.08em;
   font-weight: 600;
   text-transform: uppercase;

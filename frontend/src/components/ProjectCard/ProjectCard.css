@@ -1,16 +1,18 @@
 .project-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 3px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: all var(--transition-normal);
 }
 
 .project-card:hover {
   border-color: var(--border-hover);
   background-color: var(--bg-elevated);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
 .project-card__header {

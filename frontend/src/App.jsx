@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import ResumeModal from './components/Modal/ResumeModal';
+import FloatingAIChat from './components/Chat/FloatingAIChat';
 
 import Hero from './sections/Hero/Hero';
 import About from './sections/About/About';
@@ -14,6 +15,7 @@ import Contact from './sections/Contact/Contact';
 
 export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleOpenResume = () => {
     setIsResumeOpen(true);
@@ -23,21 +25,33 @@ export default function App() {
     setIsResumeOpen(false);
   };
 
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+  };
+
+  const handleToggleChat = () => {
+    setIsChatOpen((prev) => !prev);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+  };
+
   return (
     <>
       {/* Sticky Navigation */}
-      <Navbar onOpenResume={handleOpenResume} />
+      <Navbar onOpenResume={handleOpenResume} onOpenChat={handleOpenChat} />
 
       {/* Main Content Sections */}
       <main id="main-content">
-        <Hero onOpenResume={handleOpenResume} />
+        <Hero onOpenResume={handleOpenResume} onOpenChat={handleOpenChat} />
         <About />
         <ProblemSolving />
         <Focus />
         <ProjectsPreview />
         <SkillsPreview />
         <Coding />
-        <AISection />
+        <AISection onOpenChat={handleOpenChat} />
       </main>
 
       {/* Contact & System Diagnostics Footer */}
@@ -45,6 +59,13 @@ export default function App() {
 
       {/* Verified Resume Modal */}
       <ResumeModal isOpen={isResumeOpen} onClose={handleCloseResume} />
+
+      {/* Distinctive Floating Vamshi AI Character & Modal Popover */}
+      <FloatingAIChat
+        isOpen={isChatOpen}
+        onToggle={handleToggleChat}
+        onClose={handleCloseChat}
+      />
     </>
   );
 }

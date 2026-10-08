@@ -102,9 +102,9 @@ export default function ResumeModal({ isOpen, onClose }) {
           </div>
 
           <div className="resume-modal-notice">
-            <div className="resume-notice-title">Document Status</div>
+            <div className="resume-notice-title">Official Resume Available</div>
             <p className="resume-notice-text">
-              The formal resume document will be added in a later phase. For inquiries regarding academic standing, coursework, or technical projects, please reach out via email or GitHub.
+              An ATS-friendly one-page technical resume PDF has been generated from verified academic credentials, technical skills, and engineering projects.
             </p>
           </div>
         </div>
@@ -121,9 +121,11 @@ export default function ResumeModal({ isOpen, onClose }) {
           <Button
             variant="primary"
             size="sm"
-            href={`mailto:${profile.socials.email}?subject=Inquiry - Palleti Vamshi`}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Contact via Email
+            Open PDF Resume ↗
           </Button>
         </div>
       </div>

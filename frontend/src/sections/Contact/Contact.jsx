@@ -37,9 +37,11 @@ export default function Contact({ onOpenResume }) {
               <Button
                 variant="secondary"
                 size="md"
-                onClick={onOpenResume}
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View Profile Credentials
+                View PDF Resume ↗
               </Button>
             </div>
           </div>
@@ -106,7 +108,7 @@ export default function Contact({ onOpenResume }) {
             © {new Date().getFullYear()} Palleti Vamshi. Engineered with React, Node.js & Vite.
           </div>
           <div className="contact-phase-tag">
-            PHASE 2: PREMIUM DESIGN SYSTEM
+            VERIFIED PORTFOLIO // RAG ACTIVE
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '../Button/Button';
 import './Navbar.css';
 
-export default function Navbar({ onOpenResume }) {
+export default function Navbar({ onOpenResume, onOpenChat }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,10 +69,20 @@ export default function Navbar({ onOpenResume }) {
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-header--scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Brand / Logo */}
+        {/* Brand / Logo with Real Avatar */}
         <a href="#hero" className="navbar-brand" aria-label="Palleti Vamshi Portfolio Home">
-          <span className="navbar-brand__prefix">PV //</span>
-          <span className="navbar-brand__name">VAMSHI</span>
+          <div className="navbar-avatar-wrapper">
+            <img
+              src="/images/vamshi-avatar.jpg"
+              alt="Palleti Vamshi"
+              className="navbar-avatar-img"
+            />
+            <span className="navbar-avatar-status" title="Enrolled at VNR VJIET"></span>
+          </div>
+          <div className="navbar-brand-text">
+            <span className="navbar-brand__name">PALLETI VAMSHI</span>
+            <span className="navbar-brand__sub">CSE (AIML) · VNRVJIET</span>
+          </div>
         </a>
 
         {/* Desktop Navigation Links */}
@@ -97,14 +107,28 @@ export default function Navbar({ onOpenResume }) {
 
         {/* Actions / CTA */}
         <div className="navbar-actions">
+          {onOpenChat && (
+            <button
+              type="button"
+              className="navbar-ai-btn"
+              onClick={onOpenChat}
+              aria-label="Open Vamshi AI Assistant"
+            >
+              <span className="navbar-ai-dot"></span>
+              <span>Ask AI</span>
+            </button>
+          )}
+
           <Button
             variant="outline"
             size="sm"
-            onClick={onOpenResume}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="navbar-resume-btn"
-            aria-label="View or download resume details"
+            aria-label="View verified PDF resume in new tab"
           >
-            Resume
+            Resume ↗
           </Button>
 
           {/* Mobile Menu Toggle Button */}
@@ -153,13 +177,13 @@ export default function Navbar({ onOpenResume }) {
             <Button
               variant="primary"
               size="md"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenResume();
-              }}
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="mobile-resume-btn"
             >
-              Resume
+              View Resume (PDF) ↗
             </Button>
           </div>
         </div>

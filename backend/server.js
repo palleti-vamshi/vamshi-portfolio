@@ -1,5 +1,5 @@
-import app from './src/app.js';
 import { config } from './src/config/env.js';
+import app from './src/app.js';
 
 const server = app.listen(config.port, () => {
   console.log(`[API Server] Running on http://localhost:${config.port} (env: ${config.env})`);

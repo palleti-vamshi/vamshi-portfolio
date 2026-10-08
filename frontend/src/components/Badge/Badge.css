@@ -19,15 +19,15 @@
 }
 
 .badge--accent {
-  border-color: rgba(124, 140, 255, 0.3);
+  border-color: rgba(108, 124, 255, 0.3);
   color: var(--accent-soft);
-  background-color: rgba(124, 140, 255, 0.05);
+  background-color: rgba(108, 124, 255, 0.08);
 }
 
 .badge--success {
-  border-color: rgba(125, 211, 168, 0.3);
+  border-color: rgba(104, 211, 145, 0.3);
   color: var(--success);
-  background-color: rgba(125, 211, 168, 0.05);
+  background-color: var(--success-glow);
 }
 
 .badge--muted {

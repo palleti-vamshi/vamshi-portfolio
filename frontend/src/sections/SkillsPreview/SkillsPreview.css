@@ -51,7 +51,7 @@
 }
 
 .legend-indicator--learning {
-  background-color: var(--accent);
+  background-color: var(--accent-primary);
 }
 
 .legend-indicator--exploring {
