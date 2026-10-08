@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import Button from '../Button/Button';
 import Badge from '../Badge/Badge';
 import { profile } from '../../data/profile';
+import { projects } from '../../data/projects';
 import './ResumeModal.css';
 
 export default function ResumeModal({ isOpen, onClose }) {
@@ -69,7 +70,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <div className="resume-section-label">CORE FOCUS & COMPETENCIES</div>
             <div className="resume-skills-grid">
               <div>
-                <span className="resume-sublabel">Languages:</span> C++, Python, JavaScript (ES6+)
+                <span className="resume-sublabel">Languages:</span> C++, Python, JavaScript (ES6+), Java
               </div>
               <div>
                 <span className="resume-sublabel">Engineering:</span> Data Structures & Algorithms, Competitive Programming
@@ -78,7 +79,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <span className="resume-sublabel">AI / ML:</span> Machine Learning Foundations, Explainable AI (XAI)
               </div>
               <div>
-                <span className="resume-sublabel">Web & Systems:</span> React, Node.js, Express, REST APIs, Git
+                <span className="resume-sublabel">Web & Systems:</span> React, Node.js, Express, Spring Boot, MySQL, Git
               </div>
             </div>
           </div>
@@ -86,12 +87,12 @@ export default function ResumeModal({ isOpen, onClose }) {
           <div className="resume-modal-section">
             <div className="resume-section-label">SELECTED PROJECTS</div>
             <div className="resume-projects-list">
-              {profile.projects.map((proj) => (
+              {projects.map((proj) => (
                 <div key={proj.id} className="resume-project-item">
                   <div className="resume-project-name">
                     {proj.title}
                     <Badge variant="accent" size="sm" className="resume-project-status">
-                      {proj.status}
+                      {proj.category.split('•')[0].trim()}
                     </Badge>
                   </div>
                   <p className="resume-project-desc">{proj.subtitle}</p>

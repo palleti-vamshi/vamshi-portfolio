@@ -1,0 +1,139 @@
+.arch-diagram {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 1.5rem;
+  border-radius: 3px;
+}
+
+.arch-diagram__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.arch-diagram__tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.arch-diagram__flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.arch-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arch-node {
+  width: 100%;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  padding: 1rem 1.25rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color var(--transition-fast);
+}
+
+.arch-node:hover {
+  border-color: var(--border-hover);
+}
+
+.arch-node__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-node__step {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.arch-node__label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.arch-node__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.arch-node__role {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.arch-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 0;
+  color: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.arch-connector__line {
+  width: 1px;
+  height: 12px;
+  background-color: var(--border-default);
+}
+
+.arch-connector__arrow {
+  color: var(--accent);
+  margin-top: -2px;
+}
+
+/* Fallback placeholder */
+.arch-placeholder {
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-default);
+  padding: 2.5rem 1.5rem;
+  border-radius: 3px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-placeholder__icon {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.arch-placeholder__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.arch-placeholder__desc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  max-width: 440px;
+}
