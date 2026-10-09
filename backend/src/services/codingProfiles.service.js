@@ -47,13 +47,56 @@ async function fetchGitHubData() {
     if (eventsRes.status === 'fulfilled' && eventsRes.value.ok) {
       const eventsData = await eventsRes.value.json();
       if (Array.isArray(eventsData)) {
-        recentEvents = eventsData.slice(0, 6).map((e) => ({
-          id: e.id,
-          type: e.type,
-          repo: e.repo?.name || '',
-          createdAt: e.created_at,
-          commitCount: e.payload?.size || e.payload?.commits?.length || null
-        }));
+        // Filter for valid public events with associated repository
+        const validEvents = eventsData.filter((e) => e && e.type && e.repo?.name);
+
+        // Prioritize meaningful repository activities (pushes, branch creation, PRs, releases)
+        const meaningfulTypes = ['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent'];
+        let prioritized = validEvents.filter((e) => meaningfulTypes.includes(e.type));
+        if (prioritized.length === 0) {
+          prioritized = validEvents;
+        }
+
+        // Sort newest first
+        prioritized.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+
+        // Limit strictly to the latest 1–2 verified events
+        recentEvents = prioritized.slice(0, 2).map((e) => {
+          const branch = e.payload?.ref ? e.payload.ref.replace('refs/heads/', '') : null;
+          let description = '';
+          if (e.type === 'PushEvent') {
+            const count = e.payload?.size || e.payload?.commits?.length;
+            if (branch && count) {
+              description = `Pushed ${count} commit${count > 1 ? 's' : ''} to ${branch}`;
+            } else if (branch) {
+              description = `Pushed commits to ${branch}`;
+            } else if (count) {
+              description = `Pushed ${count} commit${count > 1 ? 's' : ''}`;
+            } else {
+              description = 'Pushed commits to repository';
+            }
+          } else if (e.type === 'CreateEvent') {
+            const refType = e.payload?.ref_type || 'branch';
+            description = branch ? `Created ${refType} '${branch}'` : `Created ${refType}`;
+          } else if (e.type === 'PullRequestEvent') {
+            const action = e.payload?.action || 'updated';
+            description = `Pull request ${action}`;
+          } else if (e.type === 'ReleaseEvent') {
+            description = 'Published release';
+          } else {
+            description = 'Public repository activity';
+          }
+
+          return {
+            id: e.id,
+            type: e.type,
+            repo: e.repo.name,
+            createdAt: e.created_at,
+            commitCount: e.payload?.size || e.payload?.commits?.length || null,
+            branch,
+            description
+          };
+        });
       }
     }
 

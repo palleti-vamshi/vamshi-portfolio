@@ -37,9 +37,17 @@ export async function sendChatMessage(message, history = []) {
       throw new Error(errMsg);
     }
 
+    const answerText = json.data?.answer || "I'm having trouble retrieving a response right now.";
+    const sourcesList = json.data?.sources || [];
+
     return {
-      answer: json.data?.answer || "I'm having trouble retrieving a response right now.",
-      sources: json.data?.sources || []
+      success: true,
+      data: {
+        answer: answerText,
+        sources: sourcesList
+      },
+      answer: answerText,
+      sources: sourcesList
     };
   } catch (err) {
     clearTimeout(timeoutId);

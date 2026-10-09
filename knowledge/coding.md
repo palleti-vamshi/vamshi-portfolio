@@ -42,6 +42,12 @@ Palleti Vamshi actively practices algorithmic problem solving and software const
 - **Profile URL**: [https://codeforces.com/profile/vamsh_i2007](https://codeforces.com/profile/vamsh_i2007)
 - **Role & Focus**: Competitive programming rounds testing mathematical logic, greedy choices, and rapid implementation under strict time bounds.
 
+## Competitive Achievements & Contests
+
+- **Code Frenzy**: Achieved 22nd rank.
+  - Verified rank: 22nd rank.
+  - As per strict factual accuracy guidelines, organizer, event date, participant count, or award tiers are omitted until confirmed.
+
 ## Excluded Profiles
 
 - **LinkedIn**: Professional networking profile, not classified as a coding or problem-solving platform.

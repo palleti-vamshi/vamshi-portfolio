@@ -46,14 +46,6 @@ export default function SystemStatus() {
   return (
     <div className="system-status" aria-label="System Runtime Diagnostics">
       <div className="system-status__row">
-        <span className="system-status__indicator system-status__indicator--live"></span>
-        <span className="system-status__label">CLIENT:</span>
-        <span className="system-status__val">REACT + VITE (ONLINE)</span>
-      </div>
-
-      <div className="system-status__divider">/</div>
-
-      <div className="system-status__row">
         <span
           className={`system-status__indicator ${
             backendStatus.connected

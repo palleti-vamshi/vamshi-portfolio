@@ -11,7 +11,37 @@ export const profile = {
   year: '2nd Year',
   graduation: 2029,
   cgpa: '9.9 / 10',
-  location: 'Hyderabad, India',
+  location: 'Hyderabad, Telangana, India',
+  awsVolunteer: 'AWS Student Builder Group volunteer in Tech & Innovation',
+
+  // Verified Academic Milestones
+  education: [
+    {
+      institution: 'VNR VJIET',
+      degree: 'B.Tech in Artificial Intelligence & Machine Learning',
+      timeline: 'Expected Graduation: 2029',
+      score: 'Current CGPA 9.9/10',
+      isCurrent: true
+    },
+    {
+      institution: 'Narayana Junior College',
+      degree: 'Intermediate',
+      score: '987 marks'
+    },
+    {
+      institution: 'Pratibha Model High School',
+      degree: 'School',
+      score: 'score 9.7'
+    }
+  ],
+
+  // Verified Competitive Achievements
+  achievements: [
+    {
+      title: 'Code Frenzy',
+      rank: '22nd rank'
+    }
+  ],
 
   hero: {
     kicker: '01 / AI • DSA • BUILDING',
@@ -201,6 +231,11 @@ export const profile = {
   },
 
   socials: {
+    github: 'https://github.com/palleti-vamshi',
+    linkedin: 'https://www.linkedin.com/in/vamshi-palleti-466001344',
+    email: 'vamshipalleti18@gmail.com'
+  },
+  links: {
     github: 'https://github.com/palleti-vamshi',
     linkedin: 'https://www.linkedin.com/in/vamshi-palleti-466001344',
     email: 'vamshipalleti18@gmail.com'

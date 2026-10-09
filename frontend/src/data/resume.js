@@ -48,21 +48,46 @@ export const resumeData = {
   },
 
   summary:
-    'Second-year Artificial Intelligence & Machine Learning undergraduate at VNR VJIET with strong foundations in Data Structures & Algorithms, mathematical modeling, and backend systems. Experienced in architecting decoupled applications, industrial IoT digital twins, and relational database schemas. Focused on building robust, maintainable systems from first principles with a dedication to consistency, problem solving, and technical curiosity.',
+    'AI/ML undergraduate at VNR VJIET (CGPA 9.9/10) with strong foundations in Data Structures and Algorithms. Experienced in engineering event-driven IoT telemetry pipelines, normalized relational databases, and decoupled backends from first principles.',
 
   education: {
     institution: 'Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering and Technology (VNR VJIET)',
     location: 'Hyderabad, India',
     degree: 'Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning',
     timeline: 'Expected Graduation: 2029 | Current Standing: 2nd Year',
-    cgpa: '9.9 / 10'
+    cgpa: '9.9 / 10',
+    history: [
+      {
+        institution: 'Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering and Technology (VNR VJIET)',
+        degree: 'B.Tech in Artificial Intelligence & Machine Learning',
+        timeline: 'Expected Graduation: 2029',
+        score: 'Current CGPA: 9.9 / 10 (10.0 Scale) | Current Standing: 2nd Year'
+      },
+      {
+        institution: 'Narayana Junior College',
+        degree: 'Intermediate',
+        score: '987 marks'
+      },
+      {
+        institution: 'Pratibha Model High School',
+        degree: 'Secondary School',
+        score: 'score 9.7'
+      }
+    ]
   },
 
+  achievements: [
+    {
+      title: 'Code Frenzy',
+      rank: '22nd rank'
+    }
+  ],
+
   skills: {
-    programming: ['C', 'C++', 'Python', 'Java (21 LTS)', 'JavaScript (ES6+)'],
-    aiMl: ['Scikit-Learn', 'XGBoost', 'Machine Learning Foundations', 'Explainable AI Concepts'],
-    backend: ['Node.js', 'Express.js (5.x)', 'Spring Boot (4.x)', 'Spring Security (7.x)'],
-    databases: ['MongoDB', 'MySQL (3NF Relational Schema Design)', 'H2 In-Memory'],
+    programming: ['C', 'C++', 'Python', 'Java (21 LTS)', 'JavaScript (ES6+)', 'SQL'],
+    aiMl: ['Scikit-Learn', 'XGBoost', 'Machine Learning Foundations', 'Explainable AI (SHAP)'],
+    backend: ['Spring Boot', 'Spring Data JPA', 'Node.js', 'Express.js', 'RESTful APIs'],
+    databases: ['MySQL (3NF Relational Schemas)', 'MongoDB (Mongoose)', 'H2 In-Memory'],
     toolsProtocols: ['Git', 'GitHub', 'Apache Maven', 'Vite', 'MQTT (Mosquitto & Paho)', 'Linux CLI']
   },
 
@@ -74,33 +99,33 @@ export const resumeData = {
       tech: 'Python, MQTT (Mosquitto), Scikit-Learn, XGBoost, Digital Twin Simulation',
       githubUrl: 'https://github.com/palleti-vamshi/IDS_prototype',
       bullets: [
-        'Constructed an Industrial Digital Twin simulating 6 machine classes (Motor, Pump, Tank, Conveyor, Valve, Compressor) with 10 continuous telemetry sensor types.',
-        'Engineered an event-driven telemetry pipeline streaming sensor packets over MQTT (Mosquitto) to ingest and preprocess structured industrial datasets.',
-        'Developed model training routines for lightweight tree-based classifiers (Decision Trees, Random Forest, XGBoost) targeting low-latency edge deployment and Explainable AI (SHAP).'
+        'Built an industrial digital twin simulating 6 physical machine classes streaming 10 real-time continuous sensor telemetry channels.',
+        'Engineered an event-driven MQTT ingestion pipeline to validate, sanitize, and buffer sensor packets under bandwidth constraints.',
+        'Trained and benchmarked tree-based classifiers (Decision Trees, Random Forest, XGBoost) optimized for edge inference and SHAP explainability.'
       ]
     },
     {
       id: 'smart-campus',
       title: 'Smart Campus Management System',
       subtitle: 'Academic Enterprise & Campus Workflow Platform',
-      tech: 'Java 21, Spring Boot 4.1, Spring Data JPA, MySQL 8.x, H2 Database, Maven',
+      tech: 'Java 21, Spring Boot, Spring Data JPA, MySQL 8.x, H2 Database, Maven',
       githubUrl: 'https://github.com/palleti-vamshi/Smart-Campus-Management-System',
       bullets: [
-        'Designed an enterprise-grade 16-table normalized relational MySQL schema (3NF) modeling departments, courses, faculty, students, daily attendance, and certificate requests.',
-        'Implemented 16 Spring Data JPA repositories with Jakarta Validation and Hibernate schema validation (ddl-auto=validate), enforcing composite unique constraints and referential integrity.',
-        'Created complete database seed datasets and 13 complex DBMS queries verifying timetable conflict detection, validated against automated in-memory H2 tests.'
+        'Architected a 16-table relational MySQL schema (3NF) governing departments, courses, faculty, attendance, and certificate requests.',
+        'Implemented 16 Spring Data JPA repositories with Jakarta Validation, enforcing referential integrity and composite primary keys.',
+        'Formulated 13 optimized DBMS queries for conflict-free timetable scheduling and validated services with automated in-memory H2 test suites.'
       ]
     },
     {
       id: 'mentor-student',
       title: 'Mentor-Student Management',
       subtitle: 'Mentor–Student Coordination Service',
-      tech: 'Node.js, Express 5.2, MongoDB, Mongoose 9.1, JWT, BCrypt',
+      tech: 'Node.js, Express 5, MongoDB, Mongoose, JWT, BCrypt',
       githubUrl: 'https://github.com/palleti-vamshi/Mentor-Student-Management',
       bullets: [
-        'Developed a modular asynchronous REST backend service using Express 5 and ES modules for academic mentorship tracking during the P17 Hackathon.',
-        'Configured MongoDB persistence using Mongoose 9 schemas, enforcing strict schema validation and document lifecycle management across mentor and student allocations.',
-        'Implemented stateless token authentication using JSON Web Tokens (JWT), BCrypt credential hashing, and HTTP cookie parsing middleware.'
+        'Developed an asynchronous REST service using Express 5 and ES modules for academic mentorship tracking during the P17 Hackathon.',
+        'Designed MongoDB schemas with Mongoose 9, configuring index structures, relational references, and schema-level validation.',
+        'Implemented stateless JWT authentication with BCrypt password hashing and secure HTTP cookie parsing middleware.'
       ]
     },
     {
@@ -110,34 +135,26 @@ export const resumeData = {
       tech: 'Python, File I/O, Structured Data Processing, CSV Reporting',
       githubUrl: null,
       bullets: [
-        'Built a standalone Python application to automate student attendance capture, roster verification, and record management.',
-        'Developed validation logic to eliminate duplicate roll number submissions and compute session-wise as well as cumulative attendance statistics.',
-        'Implemented file persistence routines and formatted report exports to streamline administrative record-keeping.'
+        'Built a standalone Python utility to automate student attendance capture, roster validation, and aggregate summary metrics.',
+        'Implemented duplicate-entry validation routines and structured CSV export workflows for administrative record-keeping.'
       ]
     }
   ],
 
   leadership: [
     {
-      role: 'Active Member',
+      role: 'Volunteer in Tech & Innovation',
       organization: 'AWS Student Builder Group',
       detail:
-        'Engaged in collaborative technical learning sessions, cloud architecture discussions, and peer programming workshops.'
-    },
-    {
-      role: 'Technical Operations Contributor',
-      organization: 'Department Academic & Technical Events',
-      detail:
-        'Contributed to the coordination of technical hackathons, resource scheduling, and student event logistics.'
+        'Engaged in technical exploration initiatives, community knowledge sharing, and emerging technology sessions.'
     }
   ],
 
   strengths: [
-    'Problem Solving',
+    'Data Structures & Algorithms',
+    'Relational Schema Design',
+    'Systems Architecture',
     'Critical Thinking',
-    'Consistency',
-    'Leadership',
-    'Collaboration',
     'Technical Curiosity'
   ]
 };

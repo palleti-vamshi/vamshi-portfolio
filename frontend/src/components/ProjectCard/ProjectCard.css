@@ -18,8 +18,8 @@
 }
 
 .project-card:hover {
-  border-color: var(--accent-primary);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(108, 124, 255, 0.12);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55), 0 0 20px rgba(37, 99, 235, 0.16);
 }
 
 /* Subtle Specular Sheen Following Mouse */

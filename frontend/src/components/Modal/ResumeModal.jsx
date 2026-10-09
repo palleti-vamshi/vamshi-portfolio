@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Button from '../Button/Button';
 import Badge from '../Badge/Badge';
 import { profile } from '../../data/profile';
-import { projects } from '../../data/projects';
+import { resumeData } from '../../data/resume';
 import './ResumeModal.css';
 
 export default function ResumeModal({ isOpen, onClose }) {
@@ -55,56 +55,107 @@ export default function ResumeModal({ isOpen, onClose }) {
         </div>
 
         <div className="resume-modal-body">
+          <div className="resume-modal-summary-box">
+            <p className="resume-modal-summary-text">{resumeData.summary}</p>
+          </div>
+
           <div className="resume-modal-section">
             <div className="resume-section-label">EDUCATION</div>
-            <div className="resume-edu-card">
-              <div className="resume-edu-degree">{profile.degree}</div>
-              <div className="resume-edu-inst">{profile.college}, {profile.location}</div>
-              <div className="resume-edu-standing">
-                Academic Standing: <span>{profile.year}</span> (Graduation: {profile.graduation}) • CGPA: <span>{profile.cgpa}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="resume-modal-section">
-            <div className="resume-section-label">CORE FOCUS & COMPETENCIES</div>
-            <div className="resume-skills-grid">
-              <div>
-                <span className="resume-sublabel">Languages:</span> C++, Python, JavaScript (ES6+), Java
-              </div>
-              <div>
-                <span className="resume-sublabel">Engineering:</span> Data Structures & Algorithms, Competitive Programming
-              </div>
-              <div>
-                <span className="resume-sublabel">AI / ML:</span> Machine Learning Foundations, Explainable AI (XAI)
-              </div>
-              <div>
-                <span className="resume-sublabel">Web & Systems:</span> React, Node.js, Express, Spring Boot, MySQL, Git
-              </div>
-            </div>
-          </div>
-
-          <div className="resume-modal-section">
-            <div className="resume-section-label">SELECTED PROJECTS</div>
-            <div className="resume-projects-list">
-              {projects.map((proj) => (
-                <div key={proj.id} className="resume-project-item">
-                  <div className="resume-project-name">
-                    {proj.title}
-                    <Badge variant="accent" size="sm" className="resume-project-status">
-                      {proj.category.split('•')[0].trim()}
-                    </Badge>
+            <div className="resume-edu-list">
+              {profile.education.map((edu) => (
+                <div key={edu.institution} className="resume-edu-card">
+                  <div className="resume-edu-card-top">
+                    <span className="resume-edu-degree">{edu.institution}</span>
+                    <span className="resume-edu-score">{edu.score}</span>
                   </div>
-                  <p className="resume-project-desc">{proj.subtitle}</p>
+                  <div className="resume-edu-inst">{edu.degree}</div>
+                  {edu.timeline && (
+                    <div className="resume-edu-standing">{edu.timeline}</div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
+          <div className="resume-modal-section">
+            <div className="resume-section-label">ACHIEVEMENTS</div>
+            <div className="resume-achieve-list">
+              {profile.achievements.map((ach) => (
+                <div key={ach.title} className="resume-achieve-card">
+                  <span className="resume-achieve-title">🏆 {ach.title}</span>
+                  <span className="resume-achieve-rank">{ach.rank}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="resume-modal-section">
+            <div className="resume-section-label">TECHNICAL SKILLS</div>
+            <div className="resume-skills-grid">
+              <div>
+                <span className="resume-sublabel">Languages:</span> {resumeData.skills.programming.join(', ')}
+              </div>
+              <div>
+                <span className="resume-sublabel">AI / ML:</span> {resumeData.skills.aiMl.join(', ')}
+              </div>
+              <div>
+                <span className="resume-sublabel">Backend:</span> {resumeData.skills.backend.join(', ')}
+              </div>
+              <div>
+                <span className="resume-sublabel">Databases:</span> {resumeData.skills.databases.join(', ')}
+              </div>
+              <div>
+                <span className="resume-sublabel">Tools & Protocols:</span> {resumeData.skills.toolsProtocols.join(', ')}
+              </div>
+            </div>
+          </div>
+
+          <div className="resume-modal-section">
+            <div className="resume-section-label">FEATURED PROJECTS</div>
+            <div className="resume-projects-list">
+              {resumeData.projects.map((proj) => (
+                <div key={proj.id} className="resume-project-item">
+                  <div className="resume-project-name">
+                    <span>{proj.title}</span>
+                    {proj.githubUrl && (
+                      <a
+                        href={proj.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="resume-project-link"
+                      >
+                        Code ↗
+                      </a>
+                    )}
+                  </div>
+                  <div className="resume-project-tech">{proj.tech}</div>
+                  <ul className="resume-project-bullets">
+                    {proj.bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="resume-modal-section">
+            <div className="resume-section-label">LEADERSHIP & INVOLVEMENT</div>
+            <div className="resume-leadership-card">
+              <div className="resume-leadership-top">
+                <span className="resume-leadership-role">AWS Student Builder Group</span>
+                <span className="resume-leadership-tag">Volunteer</span>
+              </div>
+              <p className="resume-leadership-desc">
+                Volunteer in Tech & Innovation — participating in technical exploration, cloud architectures, and peer knowledge sharing.
+              </p>
+            </div>
+          </div>
+
           <div className="resume-modal-notice">
-            <div className="resume-notice-title">Official Resume Available</div>
+            <div className="resume-notice-title">Official 2-Page Resume Available</div>
             <p className="resume-notice-text">
-              An ATS-friendly one-page technical resume PDF has been generated from verified academic credentials, technical skills, and engineering projects.
+              A clean, recruiter-friendly two-page technical resume PDF with verified academic credentials, engineering projects, and coding profiles is ready for download.
             </p>
           </div>
         </div>

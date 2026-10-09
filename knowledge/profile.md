@@ -17,11 +17,23 @@ last_updated: 2026-10-09
 
 ## Education
 
-- **Institution**: VNR Vignana Jyothi Institute of Engineering and Technology (VNR VJIET), Hyderabad
-- **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning
-- **Current Standing**: 2nd Year
-- **Expected Graduation**: 2029
-- **CGPA**: 9.9 / 10
+- **Undergraduate (Current)**:
+  - **Institution**: Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering and Technology (VNR VJIET), Hyderabad
+  - **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning
+  - **Current Standing**: 2nd Year
+  - **Expected Graduation**: 2029
+  - **Score / CGPA**: 9.9 / 10
+- **Intermediate Education**:
+  - **Institution**: Narayana Junior College
+  - **Program**: Intermediate
+  - **Score**: 987 marks
+- **Secondary Schooling**:
+  - **School**: Pratibha Model High School
+  - **Score**: school score 9.7
+
+## Honors & Achievements
+
+- **Code Frenzy**: 22nd rank. (Compact verified competitive achievement; organizer, event date, participant count, and award are not specified or assumed).
 
 ## Core Interests
 

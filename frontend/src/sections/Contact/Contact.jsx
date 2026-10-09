@@ -70,7 +70,7 @@ export default function Contact({ onOpenResume }) {
                 github.com/palleti-vamshi
                 <span aria-hidden="true">↗</span>
               </a>
-              <span className="contact-detail-note">Code repositories & technical prototypes</span>
+              <span className="contact-detail-note">Code repositories & technical projects</span>
             </div>
 
             <div className="contact-detail-item">
@@ -84,7 +84,7 @@ export default function Contact({ onOpenResume }) {
                 linkedin.com/in/vamshi-palleti-466001344
                 <span aria-hidden="true">↗</span>
               </a>
-              <span className="contact-detail-note">Professional profile & network</span>
+              <span className="contact-detail-note">Professional network & profile</span>
             </div>
 
             <div className="contact-detail-item">
@@ -97,18 +97,18 @@ export default function Contact({ onOpenResume }) {
           </div>
         </div>
 
-        {/* System Diagnostic Status & Footer Bottom */}
+        {/* System Status & Footer Bottom */}
         <div className="contact-system-status">
-          <div className="contact-system-status__title">PHASE ARCHITECTURE HEALTH</div>
+          <div className="contact-system-status__title">SYSTEM SERVICES STATUS</div>
           <SystemStatus />
         </div>
 
         <div className="contact-footer-bottom">
           <div className="contact-copyright">
-            © {new Date().getFullYear()} Palleti Vamshi. Engineered with React, Node.js & Vite.
+            © {new Date().getFullYear()} Palleti Vamshi
           </div>
           <div className="contact-phase-tag">
-            VERIFIED PORTFOLIO // RAG ACTIVE
+            PORTFOLIO // HYDERABAD, INDIA
           </div>
         </div>
       </div>

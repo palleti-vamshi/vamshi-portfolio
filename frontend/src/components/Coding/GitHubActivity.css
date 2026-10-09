@@ -1,7 +1,7 @@
 .gh-activity-box {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 1.5rem 1.75rem;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -37,151 +37,151 @@
   font-size: 0.75rem;
 }
 
-.gh-events-stream {
+.gh-activity-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Timeline Layout */
-.gh-events-timeline {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-left: 0.5rem;
-}
-
-.gh-timeline-item {
-  display: flex;
-  align-items: flex-start;
   gap: 1.25rem;
-  position: relative;
-  padding-bottom: 1.5rem;
 }
 
-.gh-timeline-item:last-child {
-  padding-bottom: 0.5rem;
+/* Compact 1-2 Activity Cards */
+.gh-compact-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-.gh-timeline-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 14px;
-  flex-shrink: 0;
-  padding-top: 0.35rem;
+@media (min-width: 680px) {
+  .gh-compact-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.gh-timeline-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--success);
-  box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-.gh-timeline-line {
-  position: absolute;
-  top: 14px;
-  bottom: -4px;
-  width: 1px;
-  background-color: var(--border-subtle);
-  z-index: 1;
-}
-
-.gh-timeline-content {
-  flex: 1;
+.gh-compact-card {
   background-color: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: 2px;
-  padding: 0.85rem 1.15rem;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  padding: 1.15rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  gap: 0.75rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.gh-timeline-content:hover {
-  border-color: var(--border-hover);
-  background-color: rgba(255, 255, 255, 0.02);
+.gh-compact-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 0 12px var(--accent-glow);
 }
 
-.gh-timeline-main {
+.gh-compact-card__header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
-.gh-timeline-repo {
-  font-family: var(--font-mono);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.gh-compact-card__repo-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-.gh-timeline-repo:hover {
-  color: var(--accent-primary);
+.gh-compact-card__repo-link:hover {
+  color: var(--accent-hover);
 }
 
-.gh-timeline-arrow {
+.gh-compact-card__repo-icon {
+  color: var(--accent-soft);
+  display: flex;
+  align-items: center;
+}
+
+.gh-compact-card__repo-name {
+  word-break: break-all;
+}
+
+.gh-compact-card__arrow {
   font-size: 0.75rem;
   opacity: 0.6;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-.gh-timeline-repo:hover .gh-timeline-arrow {
+.gh-compact-card__repo-link:hover .gh-compact-card__arrow {
   opacity: 1;
   transform: translate(2px, -2px);
 }
 
-.gh-timeline-date {
+.gh-compact-card__date {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
-.gh-timeline-details {
+.gh-compact-card__body {
+  flex: 1;
+}
+
+.gh-compact-card__desc {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.gh-compact-card__meta {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
+  margin-top: auto;
+  padding-top: 0.25rem;
 }
 
-.gh-timeline-type {
+.gh-compact-card__pill {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-primary);
-  letter-spacing: 0.02em;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-soft);
+  background-color: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
 }
 
-.gh-timeline-dot-sep {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-}
-
-.gh-timeline-time {
-  color: var(--text-secondary);
-}
-
-.gh-timeline-commits {
+.gh-compact-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  padding: 0.1rem 0.4rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+
+.gh-compact-card__branch-icon {
+  color: var(--accent-soft);
+  font-size: 0.75rem;
+}
+
+.gh-compact-card__commits {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.15rem 0.45rem;
   border-radius: 2px;
 }
 
@@ -192,7 +192,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-top: 0.75rem;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -207,10 +207,10 @@
 }
 
 .gh-activity-fallback {
-  background-color: rgba(10, 10, 11, 0.4);
+  background-color: rgba(10, 15, 25, 0.4);
   border: 1px dashed var(--border-default);
   padding: 2rem 1.5rem;
-  border-radius: 2px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,4 +221,7 @@
 .gh-fallback-text {
   font-size: 0.875rem;
   color: var(--text-secondary);
+  max-width: 440px;
+  line-height: 1.5;
+  margin: 0;
 }

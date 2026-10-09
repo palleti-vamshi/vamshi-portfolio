@@ -53,29 +53,48 @@ export default function About() {
               </div>
 
               <div className="about-card-body">
-                <div className="about-detail-item">
-                  <span className="about-detail-label">INSTITUTION</span>
-                  <span className="about-detail-value">VNR VJIET, Hyderabad</span>
+                {/* 1. Education Section */}
+                <div className="about-edu-section">
+                  <span className="about-subsection-title">EDUCATION</span>
+                  <div className="about-edu-list">
+                    {profile.education.map((edu) => (
+                      <div
+                        key={edu.institution}
+                        className={`about-edu-item ${edu.isCurrent ? 'about-edu-item--current' : ''}`}
+                      >
+                        <div className="about-edu-item__top">
+                          <span className="about-edu-inst">{edu.institution}</span>
+                          <span className="about-edu-score">{edu.score}</span>
+                        </div>
+                        <div className="about-edu-degree">{edu.degree}</div>
+                        {edu.timeline && (
+                          <div className="about-edu-timeline">{edu.timeline}</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="about-detail-item">
-                  <span className="about-detail-label">DEGREE PROGRAM</span>
-                  <span className="about-detail-value">B.Tech Artificial Intelligence & Machine Learning</span>
+                {/* 2. Compact Achievements Section */}
+                <div className="about-achieve-section">
+                  <span className="about-subsection-title">ACHIEVEMENTS</span>
+                  <div className="about-achieve-list">
+                    {profile.achievements.map((ach) => (
+                      <div key={ach.title} className="about-achieve-item">
+                        <div className="about-achieve-main">
+                          <span className="about-achieve-icon" aria-hidden="true">🏆</span>
+                          <span className="about-achieve-title">{ach.title}</span>
+                        </div>
+                        <span className="about-achieve-rank">{ach.rank}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
+                {/* 3. Community Role */}
                 <div className="about-detail-item">
-                  <span className="about-detail-label">CURRENT YEAR / GRADUATION</span>
-                  <span className="about-detail-value">Second Year · Expected 2029</span>
-                </div>
-
-                <div className="about-detail-item about-detail-item--highlight">
-                  <span className="about-detail-label">ACADEMIC RECORD</span>
-                  <span className="about-detail-value about-score">CGPA 9.9 / 10.0</span>
-                </div>
-
-                <div className="about-detail-item">
-                  <span className="about-detail-label">LOCATION</span>
-                  <span className="about-detail-value">Hyderabad, Telangana, India</span>
+                  <span className="about-detail-label">COMMUNITY ROLE</span>
+                  <span className="about-detail-value">{profile.awsVolunteer}</span>
                 </div>
               </div>
 

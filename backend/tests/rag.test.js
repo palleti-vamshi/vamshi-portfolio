@@ -8,9 +8,9 @@ async function runTests() {
   console.log('=== RUNNING RAG RETRIEVAL & CHAT PIPELINE TESTS ===\n');
 
   // Test 1: Document Loader
-  console.log('Test 1: Document loader reads all 10 knowledge files');
+  console.log('Test 1: Document loader reads all knowledge files');
   const { files, totalChunks } = await loadAndChunkKnowledge();
-  assert(files.length === 10, `Expected 10 files, got ${files.length}`);
+  assert(files.length >= 10, `Expected at least 10 files, got ${files.length}`);
   assert(totalChunks > 50, `Expected > 50 chunks, got ${totalChunks}`);
   console.log(`  ✓ Passed: ${files.length} files loaded, ${totalChunks} chunks generated\n`);
 

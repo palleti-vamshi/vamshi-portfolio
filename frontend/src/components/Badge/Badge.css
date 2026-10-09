@@ -5,7 +5,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   padding: 0.25rem 0.625rem;
-  border-radius: 2px;
+  border-radius: 3px;
   border: 1px solid var(--border-default);
   background-color: var(--bg-surface);
   color: var(--text-secondary);
@@ -19,13 +19,13 @@
 }
 
 .badge--accent {
-  border-color: rgba(108, 124, 255, 0.3);
+  border-color: rgba(37, 99, 235, 0.35);
   color: var(--accent-soft);
-  background-color: rgba(108, 124, 255, 0.08);
+  background-color: rgba(37, 99, 235, 0.1);
 }
 
 .badge--success {
-  border-color: rgba(104, 211, 145, 0.3);
+  border-color: rgba(16, 185, 129, 0.35);
   color: var(--success);
   background-color: var(--success-glow);
 }
@@ -33,5 +33,5 @@
 .badge--muted {
   border-color: var(--border-subtle);
   color: var(--text-muted);
-  background-color: transparent;
+  background-color: var(--bg-subtle);
 }

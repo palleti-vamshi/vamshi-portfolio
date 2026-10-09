@@ -7,10 +7,17 @@
 .focus-item {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 2.25rem 0;
+  padding: 2.25rem 1rem;
   border-bottom: 1px solid var(--border-default);
   gap: 1rem;
-  transition: background-color var(--transition-fast);
+  border-radius: 4px;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.focus-item:hover {
+  background-color: var(--bg-surface);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateX(4px);
 }
 
 @media (min-width: 768px) {
