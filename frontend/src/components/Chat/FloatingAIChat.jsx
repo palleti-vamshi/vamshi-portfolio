@@ -33,77 +33,99 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
   const chatWindowRef = useRef(null);
 
   // Auto-scroll to bottom
-  useEffect(() => {
-    if (isOpen) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages, isLoading, error, isOpen]);
+  const scrollToBottom = (behavior = 'smooth') => {
+    messagesEndRef.current?.scrollIntoView({ behavior });
+  };
 
-  // Focus textarea when opened
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => textareaRef.current?.focus(), 150);
+      scrollToBottom('auto');
+      textareaRef.current?.focus();
     }
   }, [isOpen]);
 
-  // Close on Escape key
+  useEffect(() => {
+    if (isOpen) {
+      scrollToBottom('smooth');
+    }
+  }, [messages, isLoading]);
+
+  // Handle ESC key to close
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
-        onClose();
+        onClose?.();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleSendMessage = async (textToSend) => {
-    const query = (textToSend || input).trim();
-    if (!query || isLoading) return;
-
-    setError(null);
-    setInput('');
-    setLastPrompt(query);
-
-    const userMessage = {
-      id: `usr-${Date.now()}`,
-      role: 'user',
-      content: query
-    };
-
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-    setIsLoading(true);
-
-    const historyPayload = newMessages
-      .filter((m) => m.id !== 'init-1')
-      .slice(-6)
-      .map((m) => ({
-        role: m.role,
-        content: m.content
-      }));
-
-    try {
-      const res = await sendChatMessage(query, historyPayload);
-      const assistantMessage = {
-        id: `ast-${Date.now()}`,
-        role: 'assistant',
-        content: res.answer,
-        sources: res.sources || []
-      };
-      setMessages((prev) => [...prev, assistantMessage]);
-    } catch (err) {
-      setError(err.message || 'Unable to connect to the portfolio assistant.');
-    } finally {
-      setIsLoading(false);
-      setTimeout(() => textareaRef.current?.focus(), 100);
+  // Auto-resize textarea
+  const handleTextareaChange = (e) => {
+    setInput(e.target.value);
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 120)}px`;
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
+  // Submit message to RAG backend
+  const handleSubmit = async (messageText) => {
+    const textToSend = (messageText || input).trim();
+    if (!textToSend || isLoading) return;
+
+    setError(null);
+    setLastPrompt(textToSend);
+    setInput('');
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
+
+    const userMsgId = `user-${Date.now()}`;
+    const userMsg = {
+      id: userMsgId,
+      role: 'user',
+      content: textToSend
+    };
+
+    setMessages((prev) => [...prev, userMsg]);
+    setIsLoading(true);
+
+    try {
+      // Build conversation history excluding initial greeting
+      const history = messages
+        .filter((m) => m.id !== 'init-1')
+        .slice(-6)
+        .map((m) => ({
+          role: m.role,
+          content: m.content
+        }));
+
+      const res = await sendChatMessage(textToSend, history);
+
+      if (res.success && res.data) {
+        const assistantMsg = {
+          id: `asst-${Date.now()}`,
+          role: 'assistant',
+          content: res.data.answer,
+          sources: res.data.sources || []
+        };
+        setMessages((prev) => [...prev, assistantMsg]);
+      } else {
+        throw new Error(res.message || 'Unable to generate response.');
+      }
+    } catch (err) {
+      console.error('[FloatingAIChat] Chat request error:', err);
+      setError(err.message || 'Failed to reach portfolio assistant.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRetry = () => {
+    if (lastPrompt) {
+      handleSubmit(lastPrompt);
     }
   };
 
@@ -111,12 +133,6 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
     setMessages([INITIAL_MESSAGE]);
     setError(null);
     setInput('');
-  };
-
-  const handleRetry = () => {
-    if (lastPrompt) {
-      handleSendMessage(lastPrompt);
-    }
   };
 
   return (
@@ -133,17 +149,12 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
           {/* Header */}
           <div className="floating-chat-header">
             <div className="floating-chat-header-left">
-              <div className="floating-chat-avatar-thumb-wrapper">
-                <img
-                  src="/images/vamshi-avatar.jpg"
-                  alt="Vamshi AI"
-                  className="floating-chat-avatar-thumb"
-                />
-                <span className="floating-chat-dot"></span>
+              <div className="floating-chat-badge-icon">
+                <span>✦</span>
               </div>
               <div className="floating-chat-identity">
-                <span className="floating-chat-name">VAMSHI AI</span>
-                <span className="floating-chat-sub">RAG ASSISTANT</span>
+                <span className="floating-chat-name">Vamshi AI</span>
+                <span className="floating-chat-sub">Portfolio RAG Assistant</span>
               </div>
               <Badge variant="accent" size="sm">GROUNDED</Badge>
             </div>
@@ -161,54 +172,35 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
                 type="button"
                 className="floating-chat-close-btn"
                 onClick={onClose}
-                aria-label="Close Chat"
-                title="Minimize chat"
+                aria-label="Close chat window"
+                title="Close (Esc)"
               >
                 ✕
               </button>
             </div>
           </div>
 
-          {/* Suggestions Bar */}
-          <div className="floating-chat-suggestions">
-            <span className="floating-suggestions-label">PROMPTS:</span>
-            <div className="floating-suggestions-scroll">
-              {SUGGESTED_QUESTIONS.map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  className="floating-suggestion-chip"
-                  onClick={() => handleSendMessage(q)}
-                  disabled={isLoading}
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Message Stream */}
-          <div className="floating-chat-stream">
+          {/* Messages Body */}
+          <div className="floating-chat-body">
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`floating-msg-row floating-msg-row--${msg.role}`}
+                className={`floating-chat-msg floating-chat-msg--${msg.role}`}
               >
-                <div className={`floating-msg-bubble floating-msg-bubble--${msg.role}`}>
-                  <div className="floating-msg-author">
-                    {msg.role === 'assistant' ? 'VAMSHI AI' : 'VISITOR'}
-                  </div>
-
-                  <div className="floating-msg-content">
+                <div className="floating-chat-bubble">
+                  {msg.role === 'assistant' ? (
                     <SafeMarkdown content={msg.content} />
-                  </div>
+                  ) : (
+                    <p className="floating-chat-user-text">{msg.content}</p>
+                  )}
 
+                  {/* Grounded Sources Attribution */}
                   {msg.sources && msg.sources.length > 0 && (
-                    <div className="floating-msg-sources">
-                      <span className="floating-sources-label">Sources:</span>
-                      <div className="floating-sources-chips">
+                    <div className="floating-chat-sources">
+                      <span className="floating-chat-sources-label">GROUNDED SOURCES:</span>
+                      <div className="floating-chat-sources-tags">
                         {msg.sources.map((src) => (
-                          <span key={src} className="floating-source-tag">
+                          <span key={src} className="floating-chat-source-tag">
                             {src}
                           </span>
                         ))}
@@ -219,80 +211,98 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
               </div>
             ))}
 
-            {/* Loading Indicator */}
+            {/* Loading / Typing State */}
             {isLoading && (
-              <div className="floating-msg-row floating-msg-row--assistant">
-                <div className="floating-msg-bubble floating-msg-bubble--assistant floating-msg-bubble--loading">
-                  <div className="floating-msg-author">VAMSHI AI // RETRIEVING</div>
-                  <div className="floating-loading-dots">
-                    <span className="floating-dot"></span>
-                    <span className="floating-dot"></span>
-                    <span className="floating-dot"></span>
-                    <span className="floating-loading-text">Searching verified knowledge base...</span>
+              <div className="floating-chat-msg floating-chat-msg--assistant">
+                <div className="floating-chat-bubble floating-chat-bubble--loading">
+                  <div className="typing-indicator" aria-label="Thinking">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
+                  <span className="typing-label">Retrieving portfolio knowledge...</span>
                 </div>
               </div>
             )}
 
-            {/* Error Message */}
+            {/* Error & Retry State */}
             {error && (
-              <div className="floating-error-card">
-                <span className="floating-error-icon" aria-hidden="true">⚠</span>
-                <div className="floating-error-body">
-                  <p className="floating-error-msg">{error}</p>
-                  <button
-                    type="button"
-                    className="floating-retry-btn"
-                    onClick={handleRetry}
-                  >
-                    Retry Question ↗
-                  </button>
-                </div>
+              <div className="floating-chat-error" role="alert">
+                <p className="floating-chat-error-text">
+                  {error}
+                </p>
+                <button
+                  type="button"
+                  onClick={handleRetry}
+                  className="floating-chat-retry-btn"
+                >
+                  Retry Prompt
+                </button>
               </div>
             )}
 
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
+          {/* Suggested Quick Questions */}
+          {messages.length <= 2 && (
+            <div className="floating-chat-suggestions">
+              <span className="floating-chat-suggestions-title">SUGGESTED QUESTIONS:</span>
+              <div className="floating-chat-chips">
+                {SUGGESTED_QUESTIONS.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    className="floating-chat-chip"
+                    onClick={() => handleSubmit(q)}
+                    disabled={isLoading}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Chat Input Box */}
           <form
-            className="floating-chat-input-area"
+            className="floating-chat-footer"
             onSubmit={(e) => {
               e.preventDefault();
-              handleSendMessage();
+              handleSubmit();
             }}
           >
-            <div className="floating-input-box">
+            <div className="floating-chat-input-wrapper">
               <textarea
                 ref={textareaRef}
-                className="floating-textarea"
+                rows={1}
                 value={input}
-                onChange={(e) => setInput(e.target.value.slice(0, 500))}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask about Vamshi's projects, skills, or education..."
-                rows={2}
-                maxLength={500}
+                onChange={handleTextareaChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit();
+                  }
+                }}
+                placeholder="Ask about Vamshi's projects, skills..."
+                className="floating-chat-textarea"
                 disabled={isLoading}
-                aria-label="Ask Vamshi AI"
+                aria-label="Ask Vamshi AI a question"
               />
-              <div className="floating-input-bottom">
-                <span className="floating-counter">{input.length} / 500</span>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="sm"
-                  disabled={isLoading || !input.trim()}
-                  className="floating-send-btn"
-                >
-                  {isLoading ? '...' : 'Send ↗'}
-                </Button>
-              </div>
+              <button
+                type="submit"
+                disabled={!input.trim() || isLoading}
+                className="floating-chat-send-btn"
+                aria-label="Send question"
+              >
+                ↑
+              </button>
             </div>
           </form>
         </div>
       )}
 
-      {/* Floating AI Character Launcher Button */}
+      {/* Elegant Floating AI Button Launcher */}
       <button
         type="button"
         className={`floating-ai-launcher ${isOpen ? 'floating-ai-launcher--active' : ''}`}
@@ -300,18 +310,9 @@ export default function FloatingAIChat({ isOpen, onToggle, onClose }) {
         aria-label={isOpen ? 'Close Vamshi AI Assistant' : 'Open Vamshi AI Assistant'}
         aria-expanded={isOpen}
       >
-        <div className="floating-ai-avatar">
-          <img
-            src="/images/vamshi-avatar.jpg"
-            alt="Vamshi AI"
-            className="floating-ai-avatar-img"
-          />
-          <span className="floating-ai-ping"></span>
-        </div>
-        <div className="floating-ai-pill">
-          <span className="floating-ai-pill-text">VAMSHI AI</span>
-          <span className="floating-ai-status-indicator"></span>
-        </div>
+        <span className="floating-ai-launcher__icon">✦</span>
+        <span className="floating-ai-launcher__text">Ask Vamshi AI</span>
+        <span className="floating-ai-launcher__ping" aria-hidden="true"></span>
       </button>
     </div>
   );

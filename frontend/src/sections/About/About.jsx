@@ -1,156 +1,92 @@
-import { useState } from 'react';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import Badge from '../../components/Badge/Badge';
 import { profile } from '../../data/profile';
 import './About.css';
 
 export default function About() {
-  const { about } = profile;
-  const [isIdModalOpen, setIsIdModalOpen] = useState(false);
-
   return (
     <section id="about" className="section-wrapper about-section">
       <div className="container">
         <SectionHeader
           number="01"
-          kicker="BACKGROUND & PHILOSOPHY"
-          title="ENGINEERING FROM FIRST PRINCIPLES"
+          kicker="ABOUT"
+          title="A little about me."
           description="A grounded academic foundation focused on understanding core computation, mathematical models, and resilient system design."
         />
 
-        <div className="about-layout">
-          {/* Narrative Column */}
+        <div className="about-editorial-grid">
+          {/* Left Column: Narrative & Focus Areas */}
           <div className="about-narrative">
-            <div className="about-narrative__lead">
-              <span className="about-lead-kicker">PROFILE // INTENT</span>
-              <h3 className="about-lead-heading">
-                Learning deep systems through relentless hands-on building.
-              </h3>
-            </div>
+            <h3 className="about-statement">
+              Building software from first principles to truly understand how complex systems behave.
+            </h3>
 
-            {about.bio.map((paragraph, idx) => (
-              <p key={idx} className="about-paragraph">
-                {paragraph}
-              </p>
-            ))}
+            <p className="about-text">
+              I'm a second-year AI/ML student at VNR VJIET, Hyderabad, exploring artificial intelligence, machine learning, data structures, competitive programming, and emerging technologies through hands-on projects.
+            </p>
 
-            <div className="about-focus-pills">
-              <span className="about-focus-title">CORE ENGINEERING PRIORITIES:</span>
-              <div className="about-pills-list">
-                <span className="about-pill">Algorithmic Rigor</span>
-                <span className="about-pill">Explainable AI</span>
-                <span className="about-pill">Decoupled Systems</span>
-                <span className="about-pill">Industrial IoT Telemetry</span>
-                <span className="about-pill">Clean API Boundaries</span>
+            <p className="about-text">
+              My engineering journey is driven by practical implementation. Whether architecting lightweight intrusion detection systems for industrial IoT, developing secure campus management backends with Java and Spring, or solving algorithmic challenges, I focus on write clean, modular, and explainable code.
+            </p>
+
+            <div className="about-focus-block">
+              <span className="about-focus-label">CORE AREAS OF FOCUS:</span>
+              <div className="about-focus-pills">
+                <span className="about-focus-pill">Machine Learning & Anomaly Detection</span>
+                <span className="about-focus-pill">Data Structures & Algorithms</span>
+                <span className="about-focus-pill">Competitive Programming</span>
+                <span className="about-focus-pill">Backend & Full-Stack Systems</span>
+                <span className="about-focus-pill">Industrial IoT Telemetry</span>
               </div>
             </div>
           </div>
 
-          {/* Academic & Verified Student Credential Spec Card */}
-          <div className="about-credentials-col">
-            <div className="about-id-card">
-              <div className="about-id-header">
-                <div className="about-id-header-left">
-                  <span className="about-id-dot"></span>
-                  <span className="about-id-title">VERIFIED STUDENT CREDENTIAL</span>
+          {/* Right Column: Academic & Background Card */}
+          <div className="about-card-col">
+            <div className="about-academic-card">
+              <div className="about-card-header">
+                <div className="about-card-header__left">
+                  <span className="about-card-status-dot"></span>
+                  <span className="about-card-title">ACADEMIC SNAPSHOT</span>
                 </div>
-                <Badge variant="success" size="sm">ACTIVE ENROLLMENT</Badge>
+                <Badge variant="accent" size="sm">UNDERGRADUATE</Badge>
               </div>
 
-              {/* ID Card Visual Preview */}
-              <div
-                className="about-id-preview-frame"
-                onClick={() => setIsIdModalOpen(true)}
-                title="Click to view full VNR VJIET Student ID"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setIsIdModalOpen(true)}
-              >
-                <img
-                  src="/images/vamshi-id-card.jpg"
-                  alt="Official VNR VJIET College ID Card - Palleti Vamshi (Roll No: 25071A6652)"
-                  className="about-id-preview-img"
-                  loading="lazy"
-                />
-                <div className="about-id-preview-overlay">
-                  <span className="about-id-zoom-btn">
-                    <span>Inspect ID Card</span>
-                    <span aria-hidden="true">↗</span>
-                  </span>
+              <div className="about-card-body">
+                <div className="about-detail-item">
+                  <span className="about-detail-label">INSTITUTION</span>
+                  <span className="about-detail-value">VNR VJIET, Hyderabad</span>
                 </div>
-              </div>
 
-              {/* Structured Metadata Spec Sheet */}
-              <div className="about-spec-body">
-                <div className="about-spec-row">
-                  <span className="about-spec-label">INSTITUTION</span>
-                  <span className="about-spec-value">VNR VJIET, Hyderabad</span>
+                <div className="about-detail-item">
+                  <span className="about-detail-label">DEGREE PROGRAM</span>
+                  <span className="about-detail-value">B.Tech Artificial Intelligence & Machine Learning</span>
                 </div>
-                <div className="about-spec-row">
-                  <span className="about-spec-label">DEGREE</span>
-                  <span className="about-spec-value">B.Tech CSE (AI & ML)</span>
+
+                <div className="about-detail-item">
+                  <span className="about-detail-label">CURRENT YEAR / GRADUATION</span>
+                  <span className="about-detail-value">Second Year · Expected 2029</span>
                 </div>
-                <div className="about-spec-row">
-                  <span className="about-spec-label">ROLL NO</span>
-                  <span className="about-spec-value mono-accent">25071A6652</span>
+
+                <div className="about-detail-item about-detail-item--highlight">
+                  <span className="about-detail-label">ACADEMIC RECORD</span>
+                  <span className="about-detail-value about-score">CGPA 9.9 / 10.0</span>
                 </div>
-                <div className="about-spec-row">
-                  <span className="about-spec-label">BATCH / STANDING</span>
-                  <span className="about-spec-value">2025–2029 (2nd Year)</span>
-                </div>
-                <div className="about-spec-row about-spec-row--highlight">
-                  <span className="about-spec-label">ACADEMIC SCORE</span>
-                  <span className="about-spec-value about-spec-cgpa">CGPA 9.9 / 10.0</span>
+
+                <div className="about-detail-item">
+                  <span className="about-detail-label">LOCATION</span>
+                  <span className="about-detail-value">Hyderabad, Telangana, India</span>
                 </div>
               </div>
 
-              <div className="about-id-footer">
-                <span className="about-id-footer-text">
-                  Autonomous Institution · UGC Recognized · Hyderabad
-                </span>
+              <div className="about-card-footer">
+                <span className="about-quote-mark">“</span>
+                <span className="about-quote-text">I build to understand.</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* ID Card Expansion Modal */}
-      {isIdModalOpen && (
-        <div
-          className="id-modal-backdrop"
-          onClick={() => setIsIdModalOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Verified Student ID Card"
-        >
-          <div
-            className="id-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="id-modal-header">
-              <span className="id-modal-title">VNR VJIET // OFFICIAL STUDENT ID CARD</span>
-              <button
-                type="button"
-                className="id-modal-close"
-                onClick={() => setIsIdModalOpen(false)}
-                aria-label="Close ID card view"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="id-modal-image-box">
-              <img
-                src="/images/vamshi-id-card.jpg"
-                alt="Palleti Vamshi - VNR VJIET Student ID"
-                className="id-modal-img"
-              />
-            </div>
-            <div className="id-modal-footer">
-              <span>Palleti Vamshi · Roll: 25071A6652 · CSE (AIML)</span>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

@@ -1,15 +1,64 @@
+import { useState, useRef } from 'react';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import './ProjectCard.css';
 
 export default function ProjectCard({ project, onOpenCaseStudy }) {
-  // Extract a concise set of top tech badges from project.technologies
+  const cardRef = useRef(null);
+  const [tiltStyle, setTiltStyle] = useState({});
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Top technology badges (up to 4)
   const topTechnologies = Object.values(project.technologies || {})
     .flat()
     .slice(0, 4);
 
+  // Subtle 3D perspective tilt on hover (3-6 degrees max)
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const normalizedX = (x / rect.width) - 0.5;
+    const normalizedY = (y / rect.height) - 0.5;
+
+    const rotateY = normalizedX * 8;
+    const rotateX = -normalizedY * 8;
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translate3d(0, -4px, 0)`,
+      '--mouse-x': `${(normalizedX + 0.5) * 100}%`,
+      '--mouse-y': `${(normalizedY + 0.5) * 100}%`,
+      transition: 'transform 0.08s ease-out'
+    });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)',
+      transition: 'transform 0.4s ease-out'
+    });
+  };
+
   return (
-    <article className="project-card" aria-labelledby={`proj-title-${project.id}`}>
+    <article
+      ref={cardRef}
+      className={`project-card ${isHovered ? 'project-card--hovered' : ''}`}
+      style={tiltStyle}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      aria-labelledby={`proj-title-${project.id}`}
+    >
+      {/* Specular Highlight Sheen */}
+      <div className="project-card__sheen" aria-hidden="true"></div>
+
       {/* Header with Project Number & Category */}
       <div className="project-card__header">
         <div className="project-card__meta">
@@ -18,15 +67,18 @@ export default function ProjectCard({ project, onOpenCaseStudy }) {
             {project.category.split('•')[0].trim()}
           </Badge>
         </div>
+
         <h3 id={`proj-title-${project.id}`} className="project-card__title">
           {project.title}
         </h3>
+
         {project.evolutionBadge && (
           <div className="project-card__evolution">
             <span className="project-card__evolution-tag">EVOLUTION:</span>
             <span className="project-card__evolution-text">{project.evolutionBadge}</span>
           </div>
         )}
+
         <p className="project-card__subtitle">{project.subtitle}</p>
       </div>
 

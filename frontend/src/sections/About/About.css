@@ -1,13 +1,14 @@
 /* ==========================================================================
    PALLETI VAMSHI — ABOUT SECTION STYLES
-   Editorial Narrative & Verified Student Credential Spec Card
+   Clean Editorial Layout & Professional Academic Card
    ========================================================================== */
 
 .about-section {
   background-color: var(--bg-primary);
+  position: relative;
 }
 
-.about-layout {
+.about-editorial-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3.5rem;
@@ -15,9 +16,9 @@
 }
 
 @media (min-width: 992px) {
-  .about-layout {
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+  .about-editorial-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4.5rem;
   }
 }
 
@@ -27,47 +28,34 @@
   flex-direction: column;
 }
 
-.about-narrative__lead {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.about-lead-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--accent-primary);
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.about-lead-heading {
+.about-statement {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.35;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 @media (min-width: 640px) {
-  .about-lead-heading {
-    font-size: 1.65rem;
+  .about-statement {
+    font-size: 1.75rem;
   }
 }
 
-.about-paragraph {
+.about-text {
   font-size: 1.05rem;
   line-height: 1.75;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
 
-/* Priorities Pills */
-.about-focus-pills {
-  margin-top: 1.5rem;
+/* Focus Block */
+.about-focus-block {
+  margin-top: 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border-subtle);
   display: flex;
@@ -75,56 +63,63 @@
   gap: 0.85rem;
 }
 
-.about-focus-title {
+.about-focus-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   color: var(--text-muted);
 }
 
-.about-pills-list {
+.about-focus-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.about-pill {
+.about-focus-pill {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 2px;
+  border-radius: 3px;
   color: var(--text-secondary);
   transition: all var(--transition-fast);
 }
 
-.about-pill:hover {
+.about-focus-pill:hover {
   border-color: var(--accent-primary);
   color: var(--text-primary);
   background-color: var(--bg-elevated);
 }
 
-/* Verified Student Credentials Column */
-.about-credentials-col {
+/* Right Column: Academic Snapshot Card */
+.about-card-col {
   display: flex;
   justify-content: center;
 }
 
-.about-id-card {
+.about-academic-card {
   width: 100%;
   max-width: 440px;
-  background-color: var(--bg-surface);
+  background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  transition: all var(--transition-normal);
 }
 
-.about-id-header {
+.about-academic-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(108, 124, 255, 0.12);
+}
+
+.about-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -133,242 +128,98 @@
   border-bottom: 1px solid var(--border-default);
 }
 
-.about-id-header-left {
+.about-card-header__left {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
 
-.about-id-dot {
-  width: 7px;
-  height: 7px;
+.about-card-status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-primary);
   border-radius: 50%;
-  background-color: var(--success);
-  box-shadow: 0 0 8px var(--success-glow);
+  box-shadow: 0 0 6px var(--accent-primary);
 }
 
-.about-id-title {
+.about-card-title {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--text-primary);
   font-weight: 600;
 }
 
-/* ID Card Preview Frame */
-.about-id-preview-frame {
-  position: relative;
-  width: 100%;
-  height: 240px;
-  background-color: #050709;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--border-default);
-}
-
-.about-id-preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 0.75rem;
-  transition: transform var(--transition-smooth);
-}
-
-.about-id-preview-frame:hover .about-id-preview-img {
-  transform: scale(1.03);
-}
-
-.about-id-preview-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(11, 13, 16, 0.4);
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity var(--transition-fast);
-}
-
-.about-id-preview-frame:hover .about-id-preview-overlay {
-  opacity: 1;
-}
-
-.about-id-zoom-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(11, 13, 16, 0.9);
-  border: 1px solid var(--accent-primary);
-  color: #FFFFFF;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 0.45rem 0.85rem;
-  border-radius: 3px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* Structured Metadata Rows */
-.about-spec-body {
+/* Card Body Details */
+.about-card-body {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
-.about-spec-row {
+.about-detail-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 0.65rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--border-subtle);
-  font-size: 0.875rem;
 }
 
-.about-spec-row:last-child {
+.about-detail-item:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.about-spec-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
+.about-detail-item--highlight {
+  background: rgba(104, 211, 145, 0.06);
+  border: 1px solid rgba(104, 211, 145, 0.3);
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
 }
 
-.about-spec-value {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  text-align: right;
-}
-
-.about-spec-row--highlight {
-  background-color: rgba(104, 211, 145, 0.06);
-  padding: 0.6rem 0.75rem;
-  border-radius: 3px;
-  border: 1px solid rgba(104, 211, 145, 0.2);
-  margin-top: 0.25rem;
-}
-
-.about-spec-cgpa {
-  color: var(--success);
-  font-weight: 700;
-  font-family: var(--font-mono);
-  font-size: 0.9375rem;
-}
-
-.about-id-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: var(--bg-subtle);
-  border-top: 1px solid var(--border-subtle);
-}
-
-.about-id-footer-text {
+.about-detail-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  display: block;
-  text-align: center;
-}
-
-/* ID Card Zoom Modal */
-.id-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(5, 7, 10, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-
-.id-modal-content {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 4px;
-  width: 100%;
-  max-width: 460px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  animation: idModalFadeIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes idModalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.id-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-default);
-}
-
-.id-modal-title {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
   letter-spacing: 0.1em;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.id-modal-close {
-  background: transparent;
-  border: none;
   color: var(--text-muted);
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  transition: color var(--transition-fast);
 }
 
-.id-modal-close:hover {
-  color: #FFFFFF;
+.about-detail-value {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-.id-modal-image-box {
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-.id-modal-img {
-  max-width: 100%;
-  max-height: 65vh;
-  object-fit: contain;
-  border-radius: 3px;
-}
-
-.id-modal-footer {
-  padding: 0.75rem 1.25rem;
-  background: var(--bg-subtle);
-  border-top: 1px solid var(--border-subtle);
+.about-score {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+/* Card Footer */
+.about-card-footer {
+  padding: 1rem 1.25rem;
+  background-color: var(--bg-elevated);
+  border-top: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.about-quote-mark {
+  color: var(--accent-primary);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.about-quote-text {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-soft);
+  font-weight: 600;
 }

@@ -69,20 +69,10 @@ export default function Navbar({ onOpenResume, onOpenChat }) {
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-header--scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Brand / Logo with Real Avatar */}
+        {/* Clean Logo */}
         <a href="#hero" className="navbar-brand" aria-label="Palleti Vamshi Portfolio Home">
-          <div className="navbar-avatar-wrapper">
-            <img
-              src="/images/vamshi-avatar.jpg"
-              alt="Palleti Vamshi"
-              className="navbar-avatar-img"
-            />
-            <span className="navbar-avatar-status" title="Enrolled at VNR VJIET"></span>
-          </div>
-          <div className="navbar-brand-text">
-            <span className="navbar-brand__name">PALLETI VAMSHI</span>
-            <span className="navbar-brand__sub">CSE (AIML) · VNRVJIET</span>
-          </div>
+          <span className="navbar-logo-monogram">PV.</span>
+          <span className="navbar-brand-name">Palleti Vamshi</span>
         </a>
 
         {/* Desktop Navigation Links */}
